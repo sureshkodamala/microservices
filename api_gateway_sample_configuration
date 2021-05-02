@@ -1,0 +1,28 @@
+Below is sample configuration of spring cloud api gateway in yml format.
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+       locator:
+         enabled: true
+         lowerCaseServiceId: true
+       routes:
+        - id: currency-exchange-service
+          uri: lb://currency-exchange
+          predicate:
+            - Path: /currency-exchange/**
+        - id: currency-conversion-service
+          uri: lb://currency-conversion
+          predicate:
+           - Path: /currency-conversion/**
+        - id: currency-conversion-service1
+          uri: lb://currency-conversion
+          predicate:
+           - Path: /currency-conversion-feign/**
+        - id: currency-conversion-service2
+          uri: lb://currency-conversion
+          predicate:
+           - Path: /currency-conversion-new/**
+          filters:
+           - RewritePath:/currency-conversion-new/(?<segment>.*),/currency-conversion-feign/${segment}
