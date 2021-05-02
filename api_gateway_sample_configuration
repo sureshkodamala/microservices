@@ -1,4 +1,5 @@
-Below is sample configuration of spring cloud api gateway in yml format.
+Below is sample configuration of spring cloud api gateway in yml format. api gateway application has java based configuration, here configuration is in yml format.
+
 spring:
   application:
     name: api-gateway
